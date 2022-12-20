@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+
+<style>
+    .container-fluid{
+        background: #f4d5cc;
+    }
+    .bg-light{
+        background-color: #f4d5cc!important;
+    }
+    .btn-outline-success {
+        color: white;
+        border-color: black;
+        background: linear-gradient(to bottom, #c595e8, darkorchid);
+    }
+
+    .card{
+        background-color: #f4d5cc!important;
+    }
+
+    .btn-primary {
+    color: #fff;
+    background-color: #9932CCFF;
+    border-color: #9932CCFF;
+}
+
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Training.ru</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'Index' %}">Main page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index2' %}">Trainers</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for categories in CList %}
+                  {% with descriptions=categories.description %}
+            <li><a class="dropdown-item" href="{% url "trainings" descriptions %}">{{ categories.description }}</a></li>
+                  {% endwith %}
+              {% endfor %}
+
+          </ul>
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+<form class="d-flex">
+        {% if user.is_authenticated %}
+          <div class="btn-group dropstart">
+              <button class="btn btn-outline-sucess dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
+                  <li><a class="dropdown-item" href="{% url 'enrollForm' %}">Sign up for personal training</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="logout">Exit</a></li>
+              </ul>
+          </div>
+        {% else %}
+            <div class="btn-group dropstart">
+            <button class="btn btn-outline-success dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Authorization or Registration</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item" href="signIn" style="color: darkorchid">Entrance</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="signUp" style="color: darkorchid">Registration</a></li>
+          </ul>
+            </div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>
+
+</header>
+<body style="background: rosybrown">
+<div class="container">
+{% block contend %}
+ {% endblock %}
+</body>
+</html>

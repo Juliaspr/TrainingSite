@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends "Design.html" %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load crispy_forms_tags %}
+</head>
+<body>
+{% block contend %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for Swim in CList  %}
+            <div class="col">
+                <div class="card" style="width: 18rem; height: 22rem; ">
+                    <img class="content">
+                    {% with id=Swim.id|stringformat:"i" %}
+                        <img class="card-img-top" src={% static "/training/img"|add:id|add:".jpg" %}>
+                    {% endwith %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ Swim.profile }}</h5>
+                        <p class="card-text">{{ Swim.description }}</p>
+               <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                   <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Записаться</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Вы действительно хотите записаться на тренировку?
+      </div>
+      <div class="modal-footer">
+          <form action="{% url 'groupTraining' %}">
+        <a href="{% url 'groupTraining' %}" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Да</a>
+              </form>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>
+{#<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">#}
+{#  <div class="modal-dialog modal-dialog-centered">#}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Запись создана</h1>#}
+{#        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#        <button class="btn btn-primary" data-bs-dismiss="modal">Вернуться на главную</button>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+                        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Join</a>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+    </div>
+    </div>
+{% endblock %}
+</body>
+</html>

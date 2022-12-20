@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v6 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+           {% load static %}
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href={% static "fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"%}>
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href={%  static "css/style.css"%}>
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<div class="image-holder">
+					<img src={%  static "images/registration-form-6.jpg"%} alt="">
+				</div>
+				<form method="POST" class="register-form" id="login-form">
+                    {% csrf_token %}
+					<h3>authorization</h3>
+                    <div class="form-holder">
+                        <span class="lnr lnr-envelope"></span>
+						<input type="text" class="form-control" placeholder="Mail" style="margin-bottom: 10px" id="your_email" name="your_email">
+                    </div>
+                    <div class="form-holder">
+                        <span class="lnr lnr-lock"></span>
+                        <input type="password" class="form-control" placeholder="Password" id="your_pass" name="your_pass" style="margin-bottom: 10px">
+                    </div>
+                    <button>
+                        <span type="button" name="signin" id="signin" class="form-submit mx-auto" value="Log In">Sign in</span>
+						<i class="zmdi zmdi-long-arrow-right"></i>
+					</button>
+				</form>
+				
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src={% static "js/main.js"%}></script>
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
